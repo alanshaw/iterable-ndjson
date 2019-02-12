@@ -1,5 +1,9 @@
 # iterable-ndjson
 
+[![Build Status](https://travis-ci.org/alanshaw/iterable-ndjson.svg?branch=master)](https://travis-ci.org/alanshaw/iterable-ndjson)
+[![dependencies Status](https://david-dm.org/alanshaw/iterable-ndjson/status.svg)](https://david-dm.org/alanshaw/iterable-ndjson)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 > Takes an (async) iterable that yields ndjson and returns an async iterable that yields JS objects
 
 ## Install
