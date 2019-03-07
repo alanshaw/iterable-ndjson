@@ -4,7 +4,10 @@ module.exports = source => (async function * () {
   const matcher = /\r?\n/
   const decoder = new TextDecoder('utf8')
   let buffer = ''
-  for await (const chunk of source) {
+  for await (let chunk of source) {
+    if (typeof chunk === 'string') {
+      chunk = new TextEncoder().encode(chunk)
+    }
     buffer += decoder.decode(chunk, { stream: true })
     const parts = buffer.split(matcher)
     buffer = parts.pop()
