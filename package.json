@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "ndjson to async iterator",
   "main": "index.js",
+  "browser": "browser.js",
   "scripts": {
     "test": "standard && nyc --reporter=lcov --reporter=text ava --verbose"
   },
