@@ -1,6 +1,6 @@
 {
   "name": "iterable-ndjson",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ndjson to async iterator",
   "main": "index.js",
   "browser": "browser.js",
