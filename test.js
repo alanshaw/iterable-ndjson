@@ -100,3 +100,16 @@ test('should split from Uint8Arrays', async t => {
   t.deepEqual(results, [{ id: 1 }, { id: 2 }, { id: 3 }])
   t.end()
 })
+
+test('should round trip', async t => {
+  const input = '{"id":1}\n{"id":2}\n{"id":3}\n'
+  const source = toAsyncIterator([input])
+  const results = []
+
+  for await (const value of ndjson.stringify(ndjson.parse(source))) {
+    results.push(value)
+  }
+
+  t.equal(results.join(''), input)
+  t.end()
+})

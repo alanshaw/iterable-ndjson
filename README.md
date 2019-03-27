@@ -16,7 +16,7 @@ npm install iterable-ndjson
 
 ```js
 const ndjson = require('iterable-ndjson')
-const it = ndjson(source) // where `source` is any iterable that yields ndjson
+const it = ndjson.parse(source) // where `source` is any iterable that yields ndjson
 
 for await (const obj of it)
   console.log(obj)
@@ -31,7 +31,7 @@ const ndjson = require('iterable-ndjson')
 const fs = require('fs')
 const source = fs.createReadStream('/path/to/file.ndjson')
 
-for await (const obj of ndjson(source))
+for await (const obj of ndjson.parse(source))
   console.log(obj)
 ```
 
@@ -57,7 +57,7 @@ const source = (() => {
 })()
 
 async function main () {
-  for await (const obj of ndjson(source))
+  for await (const obj of ndjson.parse(source))
     console.log(obj)
     // Logs out:
     // { id: 1 }
@@ -82,7 +82,7 @@ const source = (async function * () {
 })()
 
 async function main () {
-  for await (const obj of ndjson(source))
+  for await (const obj of ndjson.parse(source))
     console.log(obj)
     // Logs out:
     // { id: 1 }
@@ -100,12 +100,30 @@ const ndjson = require('iterable-ndjson')
 const source = ['{"id": 1}\n', '{"id"', ': 2}', '\n{"id": 3}\n']
 
 async function main () {
-  for await (const obj of ndjson(source))
+  for await (const obj of ndjson.parse(source))
     console.log(obj)
     // Logs out:
     // { id: 1 }
     // { id: 2 }
     // { id: 3 }
+}
+
+main()
+```
+
+Stringify JS objects to NDJSON:
+
+```js
+const ndjson = require('iterable-ndjson')
+const source = [{ id: 1 }, { id: 2 }, { id: 3 }]
+
+async function main () {
+  for await (const obj of ndjson.stringify(source))
+    console.log(obj)
+    // Logs out:
+    // '{"id":1}\n'
+    // '{"id":2}\n'
+    // '{"id":3}\n'
 }
 
 main()
