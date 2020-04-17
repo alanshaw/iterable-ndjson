@@ -17,6 +17,7 @@ npm install iterable-ndjson
 ```js
 const ndjson = require('iterable-ndjson')
 const it = ndjson.parse(source) // where `source` is any iterable that yields ndjson
+// Note: `parse` is the default export, so you can also use it like `ndjson(source)`
 
 for await (const obj of it)
   console.log(obj)
